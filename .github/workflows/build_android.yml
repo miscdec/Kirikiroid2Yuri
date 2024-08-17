@@ -82,12 +82,18 @@ jobs:
         sudo mkdir /build_android && sudo chmod 777 /build_android 
         cd project/android
         chmod +x ./gradlew 
-        ./gradlew assembleDebug --no-daemon
-    
-    - name: create release
-      uses: ncipollo/release-action@v1
+        ./gradlew assemble --no-daemon
+        
+    - name: Upload final output
+      uses: actions/upload-artifact@v3
       with:
-        artifacts: "./build_android/outputs/apk/debug/*.apk"
-        allowUpdates: "true"
-        prerelease: "true"
-        token: ${{ secrets.GITHUB_TOKEN }}
+        name: release-apk
+        path: |
+          ./build_android/outputs/apk/release/*.apk
+    
+    - name: Upload final output
+      uses: actions/upload-artifact@v3
+      with:
+        name: debug-apk
+        path: |
+          ./build_android/outputs/apk/debug/*.apk
