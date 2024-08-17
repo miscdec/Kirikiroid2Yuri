@@ -75,10 +75,6 @@ jobs:
         cache: gradle
 
     - name: build krkr2yuri android
-      env:
-        SIGN_KEY_ALIAS: ${{ secrets.SIGN_KEY_ALIAS }}
-        SIGN_KEY_PASS: ${{ secrets.SIGN_KEY_PASS }}
-        SIGN_STORE_PASS: ${{ secrets.SIGN_STORE_PASS }}
       run: |
         wget https://github.com/YuriSizuku/Kirikiroid2Yuri/releases/download/1.3.9_yuri/Kirikiroid2_yuri_1.3.9.apk
         7z x Kirikiroid2_yuri_1.3.9.apk assets
